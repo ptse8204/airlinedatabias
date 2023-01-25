@@ -12,7 +12,7 @@ We understand that airfare pricing is a business decision that was driven by rev
 ### Dataset
 We uses the Airline Origin and Destination Survey from the USDOT. The main reason why we chose to use such a dataset, instead of the advertising fare of the flight is because the data point represent a fare that is actually purchase by a customers. 
 ### How does finding bias work?
-We aim our investigation in 2 directions:
+We aim our investigation (mainly) in 2 directions:
 * Investigate whether there is price discrepency in protected groups on existing dataset
 * Feed the data on to our custom build models, and see whether the model would generate results that showcase strong bias. In especially models that are extremely accuracte, and has a hard time to correctly identity areas that has a strong influence with protected groups.
 
