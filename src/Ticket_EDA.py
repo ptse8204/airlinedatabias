@@ -1,26 +1,25 @@
+#### this py file contains EDA functions for Ticket Datasets (2018 - 2022)
+
 # Dependency
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Name
-# and dump your function
-
 #Joseph
 def flight_length_bar(dataset):
-  #Flight length
-  def flight_length(x):
-      if x <= 1725: #miles
-          return "short-haul"
-      elif x>1725 and x<=3450:
-          return "medium-haul"
-      else:
-          return "long-haul"
-  #adding new column to data and plotting bar chart
-  dataset["flight_length"]=dataset["MilesFlown"].apply(lambda x: flight_length(x))
-  lengths=dataset.groupby("flight_length").count()["ItinID"]
-  plt.bar(x=lengths.index,height=lengths)
-  plt.title("Flight Length Count")
+    #Flight length
+    def flight_length(x):
+        if x <= 1725: #miles
+            return "short-haul"
+        elif x>1725 and x<=3450:
+            return "medium-haul"
+        else:
+            return "long-haul"
+	#adding new column to data and plotting bar chart
+	dataset["flight_length"]=dataset["MilesFlown"].apply(lambda x: flight_length(x))
+	lengths=dataset.groupby("flight_length").count()["ItinID"]
+	plt.bar(x=lengths.index,height=lengths)
+	plt.title("Flight Length Count")
 
 #adjusting fare columns for inflation 
 def inflation(dataset,inflation_amount):
@@ -30,9 +29,12 @@ def inflation(dataset,inflation_amount):
     dataset["ItinFare"]=dataset["ItinFare"].apply(lambda x: x + (x*inflation_amount)) 
     return dataset
 
+
+
 ### Qixi Huang
+
 ### $1 in 2018 is worth $1.16 in 2022
-def adjust_inflation(dataset):
+def adjust_inflation_2018(dataset):
     dataset['ItinFare'] = dataset['ItinFare'].apply(lambda x: x * 1.16)
     dataset['FarePerMile'] = dataset['FarePerMile'].apply(lambda x: x * 1.16)
 
@@ -69,6 +71,7 @@ def carrier_option_dis(dataset):
         
     return [profit_dis_airline, not_profit_dis_airline]
 
+
 # Garrick Su
 
 import cpi 
@@ -96,22 +99,30 @@ def lowest_and_highest_5(merged_dataset, merged_race):
     lowest_5 = merged_dataset.groupby("Code").mean()["ItinFare"].sort_values().iloc[0:5].index
     highest_5 = merged_dataset.groupby("Code").mean()["ItinFare"].sort_values().iloc[-5:].index
     return race[race["Code"].isin(lowest_5)], race[race["Code"].isin(highest_5)]
-    
+
+
+
+
+
 ### Edwin
 ## Ticket, works with combined
+
 # Drop fpm outliers
-def filter_ticket_df_outliers_FPM(ticket_df):
-  return ticket_df[ticket_df["FarePerMile"] < ticket_df["FarePerMile"].quantile(.99)]
- 
-# Drop itinFare outliers
-def filter_ticket_df_outliers_Itin(ticket_df):
-  return ticket_df[ticket_df["ItinFare"] < ticket_df["ItinFare"].quantile(.99)]
+def filter_ticket_df_outliers(ticket_df,combined):
+	return ticket_df[combined["FarePerMile"] < ticket_df["FarePerMile"].quantile(.99)]
 
 # This function return average FarePerMile per Carrier
 def avg_fpm(ticket_df):
-  ticket_df.groupby("RPCarrier").mean()["FarePerMile"].plot(kind="bar")
+    ticket_df.groupby("RPCarrier").mean()["FarePerMile"].plot(kind="bar")
 
 # This function return average FarePerMile per Carrier for Legacy Airlines
 def avg_fpm_legacy(ticket_df):
-  ticket_df.groupby("RPCarrier").mean()["FarePerMile"].loc[[
-      "AA", "AS", "B6", "DL", "HA", "UA", "WN"]].plot(kind="barh")
+    ticket_df.groupby("RPCarrier").mean()["FarePerMile"].loc[[\
+    "AA", "AS", "B6", "DL", "HA", "UA", "WN"]].plot(kind="barh")
+
+
+
+
+
+
+
