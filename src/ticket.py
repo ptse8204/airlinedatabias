@@ -1,7 +1,7 @@
 # Dependency
 import pandas as pd
 import numpy as np
-
+import matplotlib.pyplot as plt
 
 # Name
 # and dump your function
@@ -100,8 +100,12 @@ def lowest_and_highest_5(merged_dataset, merged_race):
 ### Edwin
 ## Ticket, works with combined
 # Drop fpm outliers
-def filter_ticket_df_outliers(ticket_df):
-  return ticket_df[combined["FarePerMile"] < ticket_df["FarePerMile"].quantile(.99)]
+def filter_ticket_df_outliers_FPM(ticket_df):
+  return ticket_df[ticket_df["FarePerMile"] < ticket_df["FarePerMile"].quantile(.99)]
+ 
+# Drop itinFare outliers
+def filter_ticket_df_outliers_Itin(ticket_df):
+  return ticket_df[ticket_df["ItinFare"] < ticket_df["ItinFare"].quantile(.99)]
 
 # This function return average FarePerMile per Carrier
 def avg_fpm(ticket_df):

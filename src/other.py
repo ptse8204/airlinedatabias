@@ -1,7 +1,7 @@
 # Dependency
 import pandas as pd
 import numpy as np
-
+import matplotlib.pyplot as plt
 
 ### Edwin
 ## Combined
@@ -25,7 +25,6 @@ def gen_ticket_coupon(ticket_df, coupon_df):
   coupon_df_filter = coupon_df_reduced.merge(max_gp, on=["ItinID",	"SeqNum"])
   return ticket_df_reduced.merge(coupon_df_filter, on=['ItinID', 'Year', 'Quarter'])
 
-combined = gen_ticket_coupon(ticket, coupon)
 
 ### Edwin
 
@@ -40,12 +39,12 @@ def read_cen_data(path):
 def us_city_median_income_plot(census_df):
   census_df.median_income.plot(kind="hist")
 
-  ### Edwin
-  ## Census EDA with Airline Data, Prereq: Combined, Census
+### Edwin
+## Census EDA with Airline Data, Prereq: Combined, Census
 
-  # This shows the data statistics of city areas that has 
-  # median income in the bottom 25 percentile
-  def bottom_25_data(combined, census_df):
+# This shows the data statistics of city areas that has 
+# median income in the bottom 25 percentile
+def bottom_25_data(combined, census_df):
     bot_25_median = census_df.median_income.quantile(.25)
     bottom_25_origins = combined[["FarePerMile", "RPCarrier", "OriginCityMarketID", 
                                   "MilesFlown", "SeqNum"]].merge(
@@ -76,9 +75,9 @@ def us_city_median_income_plot(census_df):
     bottom_25_dest.FarePerMile.hist()
     plt.show()
 
-  # This shows the data statistics of city areas that has 
-  # median income in the upper 25 percentile
-  def upper_25_data(combined, census_df):
+# This shows the data statistics of city areas that has 
+# median income in the upper 25 percentile
+def upper_25_data(combined, census_df):
     bot_25_median = census_df.median_income.quantile(.75)
     upper_25_origins = combined[["FarePerMile", "RPCarrier", "OriginCityMarketID", 
                                   "MilesFlown", "SeqNum"]].merge(
@@ -110,10 +109,10 @@ def us_city_median_income_plot(census_df):
     plt.show()
 
 
-  # This shows the flight statistics of city areas that has 
-  # with upper and lower 25th percentile as orgin and dest
-  # and vice-versa
-  def lower_and_upper_data(combined, census_df):
+# This shows the flight statistics of city areas that has 
+# with upper and lower 25th percentile as orgin and dest
+# and vice-versa
+def lower_and_upper_data(combined, census_df):
     bot_25_median = census_df.median_income.quantile(.25)
     up_25_median = census_df.median_income.quantile(.75)
     origins = combined[["FarePerMile", "RPCarrier", "OriginCityMarketID", 
@@ -151,10 +150,10 @@ def us_city_median_income_plot(census_df):
     origin_dest.FarePerMile.hist()
     plt.show()
 
-  # This shows the flight statistics of city areas that has 
-  # with upper25 as both orgin and dest
-  # and lower as both orgin and dest
-  def double_low_high(combined, census_df):
+# This shows the flight statistics of city areas that has 
+# with upper25 as both orgin and dest
+# and lower as both orgin and dest
+def double_low_high(combined, census_df):
     bot_25_median = census_df.median_income.quantile(.25)
     up_25_median = census_df.median_income.quantile(.75)
     origins = combined[["FarePerMile", "RPCarrier", "OriginCityMarketID", 
