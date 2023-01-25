@@ -1,3 +1,8 @@
+# Dependency
+import pandas as pd
+import numpy as np
+
+
 ### Edwin
 ## Combined
 # This function would provide a table that grab columns

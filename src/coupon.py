@@ -1,3 +1,7 @@
+# Dependency
+import pandas as pd
+import numpy as np
+
 ### Edwin
 ## Coupon, works with combined
 # This function allows filtering different classes
