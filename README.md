@@ -16,9 +16,19 @@ We aim our investigation (mainly) in 2 directions:
 * Investigate whether there is price discrepency in protected groups on existing dataset
 * Feed the data on to our custom build models, and see whether the model would generate results that showcase strong bias. In especially models that are extremely accuracte, and has a hard time to correctly identity areas that has a strong influence with protected groups.
 
+## Expected Goals and Outcomes
+### Goals
+* Discover bias, if any
+* Creating an accurate model, that is both accurate and unbias, using various accuracy measurments, and bias mitogation techniques.
+* Discover any trend shift of airfare pre-pandemic and post-pandemic
+
+### Outcoomes
+* An unbias model for extimatting the fair price that customers pay
+* An indicator allow consumers to know whether they are price dscriminated and whether they are paying the fair price
+
 ## Credits
 Tba :)
 
 ## Notes
 We will keep updating the repo alongside with our progress.
-readme file last update: Jan 25, 2023
+readme file last update: Jan 27, 2023
