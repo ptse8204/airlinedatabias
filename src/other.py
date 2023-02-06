@@ -21,7 +21,7 @@ def gen_ticket_coupon(ticket_df, coupon_df):
   coupon_df_reduced = coupon_df[['ItinID','SeqNum', 'Coupons', 'Year', 
                                  'Quarter', 'DestCityMarketID', 'Dest', 
                                  'DestState', 'CouponGeoType', 'FareClass', 'Distance',
-                                 'DistanceGroup']].rename({'Distance': 'CouponDistance',
+                                 'DistanceGroup']].rename(columns={'Distance': 'CouponDistance',
                                  'DistanceGroup': 'CouponDistanceGroup'})
   del coupon_df
   max_gp = coupon_df_reduced[["SeqNum", "ItinID"]].groupby("ItinID").max().reset_index()
