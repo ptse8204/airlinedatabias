@@ -219,7 +219,7 @@ def double_low_high(combined, census_df):
 ### 2. Avg Fare groupby by flight length and segmented by income level.
     
     
-    def income_distance_df(combined, census_df):
+def income_distance_df(combined, census_df):
     
     bot_25_median = census_df.median_income.quantile(.25)
     bottom_25_origins = combined[["FarePerMile", "RPCarrier", "OriginCityMarketID", 
