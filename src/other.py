@@ -212,3 +212,62 @@ def double_low_high(combined, census_df):
     print("FarePerMile Distribution:")
     origin_dest.FarePerMile.hist()
     plt.show()
+
+    
+    
+    
+### Qixi (Jason)
+### This function returns a table, which contains statistics of:
+### 1. market share of each flight length category condition on income level.
+### 2. Avg Fare groupby by flight length and segmented by income level.
+    
+    
+    def income_distance_df(combined, census_df):
+    
+    bot_25_median = census_df.median_income.quantile(.25)
+    bottom_25_origins = combined[["FarePerMile", "RPCarrier", "OriginCityMarketID", 
+                          "MilesFlown", "SeqNum",'Flight_length','ItinFare']].merge(
+    census_df[census_df.median_income <= bot_25_median][["Code", "median_income"]], 
+    left_on = "OriginCityMarketID", right_on="Code")
+    bottom_25_dest = combined[["FarePerMile", "RPCarrier", "DestCityMarketID", 
+                       "MilesFlown", "SeqNum",'Flight_length','ItinFare']].merge(
+    census_df[census_df.median_income <= bot_25_median][["Code", "median_income"]], 
+    left_on = "DestCityMarketID", right_on="Code")
+    
+    up_25_median = census_df.median_income.quantile(.75)
+    up_25_origins = combined[["FarePerMile", "RPCarrier", "OriginCityMarketID", 
+                          "MilesFlown", "SeqNum",'Flight_length','ItinFare']].merge(
+    census_df[census_df.median_income >= up_25_median][["Code", "median_income"]], 
+    left_on = "OriginCityMarketID", right_on="Code")
+    up_25_dest = combined[["FarePerMile", "RPCarrier", "DestCityMarketID", 
+                       "MilesFlown", "SeqNum",'Flight_length','ItinFare']].merge(
+    census_df[census_df.median_income >= up_25_median][["Code", "median_income"]], 
+    left_on = "DestCityMarketID", right_on="Code")
+    
+    
+    result_df = pd.DataFrame()
+    
+    ### market share of each flight length condition on income level.
+    result_df["b25_dest_percent"] = \
+    bottom_25_dest.Flight_length.value_counts(normalize = True).apply(lambda x: str(round(x*100,2)) +'%')
+    result_df["b25_origin_percent"] = \
+    bottom_25_origins.Flight_length.value_counts(normalize = True).apply(lambda x: str(round(x*100,2)) +'%')
+    result_df["u25_dest_percent"] = \
+    up_25_dest.Flight_length.value_counts(normalize = True).apply(lambda x: str(round(x*100,2)) +'%')
+    result_df["u25_origin_percent"] = \
+    up_25_origins.Flight_length.value_counts(normalize = True).apply(lambda x: str(round(x*100,2)) +'%')
+    
+    
+    ### Avg Fare groupby by flight length and segmented by income level.
+    
+    result_df["b25_dest_fare"] = \
+    bottom_25_dest.groupby('Flight_length')['ItinFare'].mean().apply(lambda x: str(round(x,3)) + '$')
+    result_df["b25_origin_fare"] = \
+    bottom_25_origins.groupby('Flight_length')['ItinFare'].mean().apply(lambda x: str(round(x,3)) + '$')
+    result_df["u25_dest_fare"] = \
+    up_25_dest.groupby('Flight_length')['ItinFare'].mean().apply(lambda x: str(round(x,3)) + '$')
+    result_df["u25_origin_fare"] = \
+    up_25_origins.groupby('Flight_length')['ItinFare'].mean().apply(lambda x: str(round(x,3)) + '$')
+    
+    
+    return result_df
