@@ -7,19 +7,20 @@ import matplotlib.pyplot as plt
 
 #Joseph
 def flight_length_bar(dataset):
-    #Flight length
-    def flight_length(x):
-        if x <= 1725: #miles
-            return "short-haul"
-        elif x>1725 and x<=3450:
-            return "medium-haul"
-        else:
-            return "long-haul"
-	#adding new column to data and plotting bar chart
-	dataset["flight_length"]=dataset["MilesFlown"].apply(lambda x: flight_length(x))
-	lengths=dataset.groupby("flight_length").count()["ItinID"]
-	plt.bar(x=lengths.index,height=lengths)
-	plt.title("Flight Length Count")
+  #Flight length
+  def flight_length(x):
+    if x <= 1725: #miles
+        return "short-haul"
+    elif x>1725 and x<=3450:
+        return "medium-haul"
+    else:
+        return "long-haul"
+
+  #adding new column to data and plotting bar chart
+  dataset["flight_length"]=dataset["MilesFlown"].apply(lambda x: flight_length(x))
+  lengths=dataset.groupby("flight_length").count()["ItinID"]
+  plt.bar(x=lengths.index,height=lengths)
+  plt.title("Flight Length Count")
 
 #adjusting fare columns for inflation 
 def inflation(dataset,inflation_amount):

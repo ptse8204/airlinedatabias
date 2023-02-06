@@ -26,11 +26,28 @@ def gen_ticket_coupon(ticket_df, coupon_df):
   coupon_df_filter = coupon_df_reduced.merge(max_gp, on=["ItinID",	"SeqNum"])
   return ticket_df_reduced.merge(coupon_df_filter, on=['ItinID', 'Year', 'Quarter'])
 
+## combine based on all coupons
+def combined_based_coupon(ticket_df, coupon_df):
+  ticket_df_reduced = ticket_df[["ItinID", "Coupons", 'Year', 'Quarter', 
+                                  'Origin', 'OriginCityMarketID', 'OriginState',
+                                  'RoundTrip', 'OnLine', 'DollarCred', 'FarePerMile',
+                                    'RPCarrier', 'Passengers', 'ItinFare', 'BulkFare'
+                                    , 'MilesFlown', 'ItinGeoType']].rename(
+                                        columns={"Coupons": "TotalCouponCount"})
+  del ticket_df
+  coupon_df_reduced = coupon_df[['ItinID','SeqNum', 'Coupons', 'Year', 
+                                  'Quarter', 'DestCityMarketID', 'Dest', 
+                                  'DestState', 'CouponGeoType', 'FareClass']]
+  del coupon_df
+  return ticket_df_reduced.merge(coupon_df_reduced, on=['ItinID', 'Year', 'Quarter'], how="right")
+
+
 
 ### Edwin
 
 ## Connecting census dataset
 # Reading Census City Data
+# Depreciated
 def read_cen_data(path):
   census_city_code = pd.read_csv(path)
   census_city_code["median_income"] = census_city_code["11"].str.replace(",", "").astype("int")
