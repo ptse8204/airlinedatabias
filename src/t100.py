@@ -47,7 +47,7 @@ def matching_coupon(t100_df, coupon_df):
   t_100_stat = t_100_grouped_mean.join(t_100_grouped_sum).reset_index()
   return coupon_df.merge(t_100_stat, how="left", left_on = ['Year', 
                                   'Quarter', 'OpCarrier','OriginCityMarketID', 
-                                   DestCityMarketID'], right_on = ['YEAR', 
+                                   'DestCityMarketID'], right_on = ['YEAR', 
                                   'QUARTER', 'CARRIER','ORIGIN_CITY_MARKET_ID', 
                                     'DEST_CITY_MARKET_ID'])
 
