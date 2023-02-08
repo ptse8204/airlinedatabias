@@ -36,7 +36,7 @@ def gen_load_factor_series(t100_df):
 def matching_coupon(t100_df, coupon_df):
   t100_df_load = t100_df.copy()
   t100_df_load["LOAD_FACTOR"] = gen_load_factor_series(t100_df_load)
-  t_100_grouped = t_100_df.groupby(['YEAR', 'QUARTER', 'CARRIER','ORIGIN_CITY_MARKET_ID', 
+  t_100_grouped = t100_df_load.groupby(['YEAR', 'QUARTER', 'CARRIER','ORIGIN_CITY_MARKET_ID', 
                                     'DEST_CITY_MARKET_ID'])
   # this is the city-pair load factor given on a specific carrier
   t_100_grouped_mean = t_100_grouped.mean()[["LOAD_FACTOR"]]
