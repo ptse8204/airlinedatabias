@@ -4,6 +4,7 @@
 
 # dependency
 import pandas as pd
+import other
 
 # would return only with flights that are schedule for passenger
 def import_T100(path):
@@ -44,5 +45,34 @@ def matching_coupon(t100_df, coupon_df):
                                            "DEPARTURES_PERFORMED"]].rename(
                                                columns={"PASSENGERS": "PASSENGERS_TRANS", 'SEATS': "SEATS_TRANS"})
   t_100_stat = t_100_grouped_mean.join(t_100_grouped_sum).reset_index()
-  return coupon_df.merge(t_100_stat, how="left", on = ['YEAR', 'QUARTER', 'CARRIER','ORIGIN_CITY_MARKET_ID', 
+  return coupon_df.merge(t_100_stat, how="left", left_on = ['Year', 
+                                  'Quarter', 'OpCarrier','OriginCityMarketID', 
+                                   DestCityMarketID'], right_on = ['YEAR', 
+                                  'QUARTER', 'CARRIER','ORIGIN_CITY_MARKET_ID', 
                                     'DEST_CITY_MARKET_ID'])
+
+# t-100 w/combined
+def t100_combined(ticket_df, coupon_df, t100_path):
+  ticket_df_reduced = ticket_df[["ItinID", "Coupons", 'Year', 'Quarter', 
+                                  'Origin', 'OriginCityMarketID', 'OriginState',
+                                  'RoundTrip', 'OnLine', 'DollarCred', 'FarePerMile',
+                                    'RPCarrier', 'Passengers', 'ItinFare', 'BulkFare'
+                                    , 'MilesFlown', 'ItinGeoType']].rename(
+                                        columns={"Coupons": "TotalCouponCount"})
+  del ticket_df
+  pre_t100 = coupon_df[['Year','Quarter', 'OpCarrier','OriginCityMarketID', 
+                        DestCityMarketID','ItinID','SeqNum', 'Coupons','Dest', 
+                                  'DestState', 'CouponGeoType', 'FareClass','Distance',
+                                 'DistanceGroup']]
+  del coupon_df
+  coupon_t100 = matching_coupon(useful_cols(import_T100(t100_path)), pre_t100)
+  del pre_t100
+  coupon_df_reduced = coupon_t100[['ItinID','SeqNum', 'Coupons', 'Year', 
+                                  'Quarter', 'DestCityMarketID', 'Dest', 
+                                  'DestState', 'CouponGeoType', 'FareClass','Distance',
+                                 'DistanceGroup', "PASSENGERS_TRANS", "SEATS_TRANS",
+                                 "DEPARTURES_PERFORMED", "LOAD_FACTOR"]].rename(
+                                   columns={'Distance': 'CouponDistance',
+                                 'DistanceGroup': 'CouponDistanceGroup'})
+  del coupon_t100
+  return ticket_df_reduced.merge(coupon_df_reduced, on=['ItinID', 'Year', 'Quarter'], how="right")
