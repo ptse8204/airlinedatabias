@@ -45,6 +45,7 @@ def combined_based_coupon(ticket_df, coupon_df):
   del coupon_df
   return ticket_df_reduced.merge(coupon_df_reduced, on=['ItinID', 'Year', 'Quarter'], how="right")
 
+## Return the destination as the mid-point of the ticket
 def gen_ticket_coupon_median(ticket_df, coupon_df):
   ticket_df_reduced = ticket_df[["ItinID", "Coupons", 'Year', 'Quarter', 
                                  'Origin', 'OriginCityMarketID', 'OriginState',
@@ -59,7 +60,7 @@ def gen_ticket_coupon_median(ticket_df, coupon_df):
                                  'DistanceGroup': 'CouponDistanceGroup'})
   del coupon_df
   max_gp = coupon_df_reduced[["SeqNum", "ItinID"]].groupby("ItinID").median().reset_index()
-  coupon_df_filter = coupon_df_reduced.merge(max_gp, on=["ItinID",	"SeqNum"])
+  coupon_df_filter = coupon_df_reduced.merge(max_gp, on=["ItinID",	"SeqNum"], how="right")
   return ticket_df_reduced.merge(coupon_df_filter, on=['ItinID', 'Year', 'Quarter'])
 
 
