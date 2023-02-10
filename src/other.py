@@ -60,6 +60,8 @@ def gen_ticket_coupon_median(ticket_df, coupon_df):
                                  'DistanceGroup': 'CouponDistanceGroup'})
   del coupon_df
   max_gp = coupon_df_reduced[["SeqNum", "ItinID"]].groupby("ItinID").median().reset_index()
+  max_gp["ItinID"] = max_gp["ItinID"].astype("int")
+  max_gp["SeqNum"] = max_gp["SeqNum"].astype("int")
   coupon_df_filter = coupon_df_reduced.merge(max_gp, on=["ItinID",	"SeqNum"], how="right")
   return ticket_df_reduced.merge(coupon_df_filter, on=['ItinID', 'Year', 'Quarter'])
 
