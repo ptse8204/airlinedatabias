@@ -68,11 +68,12 @@ def t100_combined(ticket_df, coupon_df, t100_path):
   coupon_t100 = matching_coupon(useful_cols(import_T100(t100_path)), pre_t100)
   del pre_t100
   coupon_df_reduced = coupon_t100[['ItinID','SeqNum', 'Coupons', 'Year', 
-                                  'Quarter', 'DestCityMarketID', 'Dest', 
-                                  'DestState', 'CouponGeoType', 'FareClass','Distance',
-                                 'DistanceGroup', "PASSENGERS_TRANS", "SEATS_TRANS",
-                                 "DEPARTURES_PERFORMED", "LOAD_FACTOR"]].rename(
-                                   columns={'Distance': 'CouponDistance',
-                                 'DistanceGroup': 'CouponDistanceGroup'})
+                                 'Quarter', 'OriginCityMarketID', 'Origin', 'OriginState'
+                                 'DestCityMarketID', 'Dest', 
+                                 'DestState', 'CouponGeoType', 'FareClass', 'Distance',
+                                 'DistanceGroup']].rename(columns={'Distance': 'CouponDistance',
+                                 'DistanceGroup': 'CouponDistanceGroup',
+                                 'OriginCityMarketID':'OriginCityMarketIDCoupon', 
+                                 'Origin': 'OriginCoupon', 'OriginState': 'OriginStateCoupon'})
   del coupon_t100
   return ticket_df_reduced.merge(coupon_df_reduced, on=['ItinID', 'Year', 'Quarter'], how="right")
