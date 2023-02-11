@@ -72,7 +72,8 @@ def t100_combined(ticket_df, coupon_df, t100_path):
                                  'Quarter', 'OriginCityMarketID', 'Origin', 'OriginState',
                                  'DestCityMarketID', 'Dest', 
                                  'DestState', 'CouponGeoType', 'FareClass', 'Distance',
-                                 'DistanceGroup']].rename(columns={'Distance': 'CouponDistance',
+                                 'DistanceGroup', "PASSENGERS_TRANS", "SEATS_TRANS",
+                                 "DEPARTURES_PERFORMED", "LOAD_FACTOR"]].rename(columns={'Distance': 'CouponDistance',
                                  'DistanceGroup': 'CouponDistanceGroup',
                                  'OriginCityMarketID':'OriginCityMarketIDCoupon', 
                                  'Origin': 'OriginCoupon', 'OriginState': 'OriginStateCoupon'})
