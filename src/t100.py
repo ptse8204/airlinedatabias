@@ -61,7 +61,7 @@ def t100_combined(ticket_df, coupon_df, t100_path):
                                         columns={"Coupons": "TotalCouponCount"})
   del ticket_df
   pre_t100 = coupon_df[['ItinID','SeqNum', 'Coupons', 'Year', 
-                                 'Quarter', 'OriginCityMarketID', 'Origin', 'OriginState'
+                                 'Quarter', 'OriginCityMarketID', 'Origin', 'OriginState',
                                  'DestCityMarketID', 'Dest', 
                                  'DestState', 'CouponGeoType', 'FareClass', 'Distance',
                                  'DistanceGroup', 'OpCarrier']]
