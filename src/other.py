@@ -19,7 +19,7 @@ def gen_ticket_coupon(ticket_df, coupon_df):
                                   , 'MilesFlown', 'ItinGeoType']]
   del ticket_df
   coupon_df_reduced = coupon_df[['ItinID','SeqNum', 'Coupons', 'Year', 
-                                 'Quarter', 'OriginCityMarketID', 'Origin', 'OriginState'
+                                 'Quarter', 'OriginCityMarketID', 'Origin', 'OriginState',
                                  'DestCityMarketID', 'Dest', 
                                  'DestState', 'CouponGeoType', 'FareClass', 'Distance',
                                  'DistanceGroup']].rename(columns={'Distance': 'CouponDistance',
@@ -41,7 +41,7 @@ def combined_based_coupon(ticket_df, coupon_df):
                                         columns={"Coupons": "TotalCouponCount"})
   del ticket_df
   coupon_df_reduced = coupon_df[['ItinID','SeqNum', 'Coupons', 'Year', 
-                                 'Quarter', 'OriginCityMarketID', 'Origin', 'OriginState'
+                                 'Quarter', 'OriginCityMarketID', 'Origin', 'OriginState',
                                  'DestCityMarketID', 'Dest', 
                                  'DestState', 'CouponGeoType', 'FareClass', 'Distance',
                                  'DistanceGroup']].rename(columns={'Distance': 'CouponDistance',
@@ -60,7 +60,7 @@ def gen_ticket_coupon_median(ticket_df, coupon_df):
                                   , 'MilesFlown', 'ItinGeoType']]
   del ticket_df
   coupon_df_reduced = coupon_df[['ItinID','SeqNum', 'Coupons', 'Year', 
-                                 'Quarter', 'OriginCityMarketID', 'Origin', 'OriginState'
+                                 'Quarter', 'OriginCityMarketID', 'Origin', 'OriginState',
                                  'DestCityMarketID', 'Dest', 
                                  'DestState', 'CouponGeoType', 'FareClass', 'Distance',
                                  'DistanceGroup']].rename(columns={'Distance': 'CouponDistance',
