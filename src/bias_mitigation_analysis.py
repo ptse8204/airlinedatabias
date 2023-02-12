@@ -51,7 +51,7 @@ def bias_mitigation(ticket,market,race,income):
                'MilesFlown', 'ItinGeoType']]
     
     #not including roundtrips, comment this out to include them
-    ticket=ticket[ticket["RoundTrip"]!=1]
+    #ticket=ticket[ticket["RoundTrip"]!=1]
 
 
 
