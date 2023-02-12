@@ -1,0 +1,6 @@
+,Unnamed: 0,Area Name,Metro Area,Code,White alone proportion,Non-White alone proportion,Airport Name,Census Name
+0,123,"Chicago, IL",True,30977,0.5016373651531184,0.4983626348468815,"Chicago, IL","Chicago-Naperville-Elgin, IL-IN-WI Metro Area"
+1,174,"Denver, CO",True,30325,0.6121196253080061,0.3878803746919939,"Denver, CO","Denver-Aurora-Lakewood, CO Metro Area"
+2,397,"Los Angeles, CA",True,32575,0.284998452389736,0.715001547610264,"Los Angeles, CA (Metropolitan Area)","Los Angeles-Long Beach-Anaheim, CA Metro Area"
+3,485,"New York, NY",True,31703,0.4325706401091931,0.5674293598908069,"New York City, NY (Metropolitan Area)","New York-Newark-Jersey City, NY-NJ-PA Metro Area"
+4,722,"Washington, DC",True,30852,0.4233751626035487,0.5766248373964513,"Washington, DC (Metropolitan Area)","Washington-Arlington-Alexandria, DC-VA-MD-WV Metro Area"
