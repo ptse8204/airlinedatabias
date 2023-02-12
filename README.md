@@ -11,6 +11,9 @@ We understand that airfare pricing is a business decision that was driven by rev
 ## Methodology
 ### Dataset
 We uses the Airline Origin and Destination Survey from the USDOT. The main reason why we chose to use such a dataset, instead of the advertising fare of the flight is because the data point represent a fare that is actually purchase by a customers. 
+
+The detail descrption and the data of the dataset is available on: https://www.transtats.bts.gov/tables.asp?QO_VQ=EFI&QO_anzr=Nv4yv0r
+
 ### How does finding bias work?
 We aim our investigation (mainly) in 2 directions:
 * Investigate whether there is price discrepency in protected groups on existing dataset

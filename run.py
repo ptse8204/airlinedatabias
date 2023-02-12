@@ -10,15 +10,21 @@ if __name__ == "__main__":
         if x =="test":
             #this needs to use the test data instead
             print("test data")
+            ticket=pd.read_csv("test/testdata/test_ticket.csv",nrows=1000000)
+            income=pd.read_csv("test/testdata/test_income.csv")
+            race=pd.read_csv("test/testdata/test_race.csv")
+            market=pd.read_csv("test/testdata/test_market.csv",nrows=1000000) 
+            coupon=pd.read_csv("test/testdata/test_coupon.csv",nrows=1000000)
+            src.bias_mitigation_analysis.bias_mitigation(ticket,market, race, income)
         else:
             ticket=pd.read_csv("Origin_and_Destination_Survey_DB1BTicket_2022_1.csv",nrows=1000000)
             income=pd.read_csv("median_income_cityID.csv")
             race=pd.read_csv("race_id.csv")
             market=pd.read_csv("Origin_and_Destination_Survey_DB1BMarket_2022_1.csv",nrows=1000000)    
-            bias_mitigation_analysis.bias_mitigation(ticket,market, race, income)
+            src.bias_mitigation_analysis.bias_mitigation(ticket,market, race, income)
     else:
         ticket=pd.read_csv("Origin_and_Destination_Survey_DB1BTicket_2022_1.csv",nrows=1000000)
         income=pd.read_csv("median_income_cityID.csv")
         race=pd.read_csv("race_id.csv")
         market=pd.read_csv("Origin_and_Destination_Survey_DB1BMarket_2022_1.csv",nrows=1000000)    
-        bias_mitigation_analysis.bias_mitigation(ticket,market, race, income)
+        src.bias_mitigation_analysis.bias_mitigation(ticket,market, race, income)
