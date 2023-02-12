@@ -22,7 +22,7 @@ We aim our investigation (mainly) in 2 directions:
 * Creating an accurate model, that is both accurate and unbias, using various accuracy measurments, and bias mitogation techniques.
 * Discover any trend shift of airfare pre-pandemic and post-pandemic
 
-### Outcoomes
+### Outcomes
 * An unbias model for extimatting the fair price that customers pay
 * An indicator allow consumers to know whether they are price dscriminated and whether they are paying the fair price
 
@@ -31,4 +31,4 @@ Tba :)
 
 ## Notes
 We will keep updating the repo alongside with our progress.
-readme file last update: Jan 27, 2023
+readme file last update: Feb 12, 2023
