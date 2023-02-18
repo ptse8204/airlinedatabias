@@ -1,7 +1,7 @@
 
 import pandas as pd
 import zipfile
-from other import gen_ticket_coupon
+from other import gen_ticket_coupon, combined_based_coupon, gen_ticket_coupon_median
 
 # This function allow for easy extraction of coupon zip
 def load_coupon(path, year, quarter):
