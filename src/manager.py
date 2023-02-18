@@ -109,7 +109,7 @@ def run_result_among_combined(
 # combo_type = "midpoint": set destination as median coupon
 def run_result_among_combined_s(
     year_start, quarter_start, year_end, quarter_end,
-    ticket_path, coupon_path, zip, function, *func_arg, combo_type="default"):
+    ticket_path, coupon_path, zip, combo_type, function, *func_arg):
   result_storage = []
   for y in range(year_start, year_end + 1):
     q_loader_s = 1
