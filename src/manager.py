@@ -129,7 +129,7 @@ def run_result_among_combined_s(
         curr_ticket_df = pd.read_csv(
               "{path_f}/Origin_and_Destination_Survey_DB1BTicket_{year_f}_{quarter_f}.{file_type}"
               .format(path_f = ticket_path, year_f = y, quarter_f = q, file_type = "zip" if zip else "csv"))
-      if combo_type == "segment"
+      if combo_type == "segment":
         curr_df = combined_based_coupon(curr_ticket_df, curr_coupon_df)
       elif combo_type == "midpoint":
         curr_df = gen_ticket_coupon_median(curr_ticket_df, curr_coupon_df)
