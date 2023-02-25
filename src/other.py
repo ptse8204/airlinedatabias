@@ -74,6 +74,10 @@ def gen_ticket_coupon_median(ticket_df, coupon_df):
   coupon_df_filter = coupon_df_reduced.merge(max_gp, on=["ItinID",	"SeqNum"], how="right")
   return ticket_df_reduced.merge(coupon_df_filter, on=['ItinID', 'Year', 'Quarter'])
 
+## Filtering outliers, defined as < .01 and >.99 quantile of FPM:
+def dropping_outlier(combined_df):
+  return combined_df[(combine_1.FarePerMile < combine_1.FarePerMile.quantile(.99))
+    & (combine_1.FarePerMile > combine_1.FarePerMile.quantile(.01))]
 
 
 ### Edwin
