@@ -76,8 +76,8 @@ def gen_ticket_coupon_median(ticket_df, coupon_df):
 
 ## Filtering outliers, defined as < .01 and >.99 quantile of FPM:
 def dropping_outlier(combined_df):
-  return combined_df[(combine_1.FarePerMile < combine_1.FarePerMile.quantile(.99))
-    & (combine_1.FarePerMile > combine_1.FarePerMile.quantile(.01))]
+  return combined_df[(combined_df.FarePerMile < combined_df.FarePerMile.quantile(.99))
+    & (combined_df.FarePerMile > combined_df.FarePerMile.quantile(.01))]
 
 
 ### Edwin
