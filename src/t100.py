@@ -14,6 +14,10 @@ def import_T100(path):
   passenger = segment[(segment.CLASS == "F") & (segment["AIRCRAFT_CONFIG"] == 1) & segment["DEPARTURES_PERFORMED"] != 0]
   return passenger
 
+# would return the given year of T_100 file
+def import_T100_by_yr(path, year):
+  return import_T100("{}/T_T100D_SEGMENT_US_CARRIER_ONLY_{}.csv".format(path, year))
+
 # A preset of useful columns
 def useful_cols(passenger):
   return passenger[["DEPARTURES_PERFORMED", "CARRIER", 'UNIQUE_CARRIER_NAME','SEATS','PASSENGERS'
