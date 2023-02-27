@@ -16,7 +16,7 @@ def import_T100(path):
 
 # would return the given year of T_100 file
 def import_T100_by_yr(path, year):
-  return import_T100("{}/T_T100D_SEGMENT_US_CARRIER_ONLY_{}.csv".format(path, year))
+  return useful_cols(import_T100("{}/T_T100D_SEGMENT_US_CARRIER_ONLY_{}.csv".format(path, year)))
 
 # A preset of useful columns
 def useful_cols(passenger):
@@ -70,7 +70,9 @@ def t100_combined(ticket_df, coupon_df, t100_path):
                                  'DestState', 'CouponGeoType', 'FareClass', 'Distance',
                                  'DistanceGroup', 'OpCarrier']]
   del coupon_df
-  coupon_t100 = matching_coupon(useful_cols(import_T100(t100_path)), pre_t100)
+  if not isinstance(t100_path, pd.DataFrame):
+    t100_path = useful_cols(import_T100(t100_path))
+  coupon_t100 = matching_coupon(t100_path, pre_t100)
   del pre_t100
   coupon_df_reduced = coupon_t100[['ItinID','SeqNum', 'Coupons', 'Year', 
                                  'Quarter', 'OriginCityMarketID', 'Origin', 'OriginState',
