@@ -56,6 +56,8 @@ def matching_coupon(t100_df, coupon_df):
                                     'DEST_CITY_MARKET_ID'])
 
 # t-100 w/combined
+# t100_path could be both dataframe or a path in string
+# ensure when in dataframe must run useful_cols(t100_df) prior to importing to function
 def t100_combined(ticket_df, coupon_df, t100_path):
   ticket_df_reduced = ticket_df[["ItinID", "Coupons", 'Year', 'Quarter', 
                                   'Origin', 'OriginCityMarketID', 'OriginState',
