@@ -100,7 +100,7 @@ def run_result_among_ticket(year_start, quarter_start, year_end, quarter_end,
     q_loader_e = 5
     if y == year_start:
       q_loader_s = quarter_start
-    elif y == year_end:
+    if y == year_end:
       q_loader_e = quarter_end + 1
     for q in range(q_loader_s, q_loader_e):
       if zip:
@@ -121,7 +121,7 @@ def run_result_among_coupon(year_start, quarter_start, year_end, quarter_end,
     q_loader_e = 5
     if y == year_start:
       q_loader_s = quarter_start
-    elif y == year_end:
+    if y == year_end:
       q_loader_e = quarter_end + 1
     for q in range(q_loader_s, q_loader_e):
       if zip:
@@ -144,7 +144,7 @@ def run_result_among_combined(
     q_loader_e = 5
     if y == year_start:
       q_loader_s = quarter_start
-    elif y == year_end:
+    if y == year_end:
       q_loader_e = quarter_end + 1
     for q in range(q_loader_s, q_loader_e):
       if zip:
