@@ -203,3 +203,40 @@ def run_result_among_combined_s(
       result_storage.append(function(curr_df, *func_arg))
       del curr_df
   return result_storage
+
+## Return the future object of the dataset
+# combo_type = "default": runs the orginal default function, which
+# uses the last coupon as destination (not accurate and not recommend,
+#  as >60% of tickets are round-trips)
+# combo_type = "segment": create combine with all segment(coupon)
+# combo_type = "midpoint": set destination as median coupon
+def grab_combined_s(
+    year_start, quarter_start, year_end, quarter_end,
+    ticket_path, coupon_path, zip, combo_type):
+  result_storage = []
+  for y in range(year_start, year_end + 1):
+    q_loader_s = 1
+    q_loader_e = 5
+    if y == year_start:
+      q_loader_s = quarter_start
+    elif y == year_end:
+      q_loader_e = quarter_end + 1
+    for q in range(q_loader_s, q_loader_e):
+      if zip:
+        curr_coupon_df = load_coupon_df(coupon_path, y, q)
+        curr_ticket_df = load_ticket_df(ticket_path, y, q)
+      else:
+        curr_coupon_df = pd.read_csv(
+              "{path_f}/Origin_and_Destination_Survey_DB1BCoupon_{year_f}_{quarter_f}.{file_type}"
+              .format(path_f = coupon_path, year_f = y, quarter_f = q, file_type = "zip" if zip else "csv"))
+        curr_ticket_df = pd.read_csv(
+              "{path_f}/Origin_and_Destination_Survey_DB1BTicket_{year_f}_{quarter_f}.{file_type}"
+              .format(path_f = ticket_path, year_f = y, quarter_f = q, file_type = "zip" if zip else "csv"))
+      if combo_type == "segment":
+        curr_df = combined_based_coupon(curr_ticket_df, curr_coupon_df)
+      elif combo_type == "midpoint":
+        curr_df = gen_ticket_coupon_median(curr_ticket_df, curr_coupon_df)
+      else:
+        curr_df = gen_ticket_coupon(curr_ticket_df, curr_coupon_df)
+      result_storage.append(curr_df)
+  return result_storage
