@@ -30,7 +30,7 @@ del combine_1
 
 f_c_nna = filtered_combine[~filtered_combine.LOAD_FACTOR.isna()]
 # generate cdf numbers
-f_c_nna["cdf"] = f_c_nna.groupby[["OriginCityMarketIDCoupon", "DestCityMarketID", "RPCarrier",
+f_c_nna["cdf"] = f_c_nna[["OriginCityMarketIDCoupon", "DestCityMarketID", "RPCarrier",
                   "ItinFare"]].groupby([
                       "OriginCityMarketIDCoupon", "DestCityMarketID", "RPCarrier"]
                       ).rank(pct=True)
