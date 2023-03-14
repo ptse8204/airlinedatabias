@@ -2,7 +2,7 @@
 
 ## Importing imports
 import pandas as pd
-import src.coupon, src.graber, src.manager, src.other, src.t100, src.ticket
+#import src.coupon, src.graber, src.manager, src.other, src.t100, src.ticket
 from sklearn.model_selection import train_test_split
 import numpy as np
 from sklearn.pipeline import Pipeline
@@ -38,7 +38,7 @@ def price_sensitivity_model(ticket,coupon,test):
                                  'Origin': 'OriginCoupon', 'OriginState': 'OriginStateCoupon'})
         del coupon_df_1
         combine_1=ticket_df_reduced.merge(coupon_df_reduced, on=['ItinID', 'Year', 'Quarter'], how="right")
-        filtered_combine = src.other.dropping_outlier(combine_1)
+        filtered_combine = combine_1#src.other.dropping_outlier(combine_1)
         del combine_1
 
         f_c_nna = filtered_combine#[~filtered_combine.LOAD_FACTOR.isna()]
