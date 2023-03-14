@@ -4,7 +4,7 @@
 
 # dependency
 import pandas as pd
-import src.other
+import other
 
 # would return only with flights that are schedule for passenger
 def import_T100(path):
