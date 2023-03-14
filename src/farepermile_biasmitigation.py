@@ -109,7 +109,7 @@ def fpm_bias_mitigation(ticket, coupon, race, test):
 
         return metric_arrs
     
-    percent25 = df["FarePerMile"].describe()["25%"]
+    percent25 = df["FarePerMile"].describe()["75%"]
     fare_class_series=df["FarePerMile"].apply(lambda x: x < percent25)
     df=df.assign(fare_class=fare_class_series)
 
