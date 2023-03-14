@@ -274,9 +274,14 @@ def fpm_bias_mitigation(ticket, coupon, race, test):
     aif_data=StandardDataset(df,label_name,favorable_classes,protected_attribute_names,privileged_classes,categorical_features=categorical_features,
                          features_to_keep=features_keep, metadata={'protected_attribute_maps': [{1.0: 'white', 0.0: 'non-white'}]})
 
-    (aif_train,
-     aif_val,
-     aif_test) = aif_data.split([0.5, 0.8], shuffle=True)
+    ]if test==True:
+         (aif_train,
+         aif_val,
+         aif_test) = aif_data.split([0.01, 0.7], shuffle=True)
+    else:
+        (aif_train,
+         aif_val,
+         aif_test) = aif_data.split([0.5, 0.8], shuffle=True)
 
     model = PrejudiceRemover(sensitive_attr=sens_attr)
     pr_orig_scaler = StandardScaler()
