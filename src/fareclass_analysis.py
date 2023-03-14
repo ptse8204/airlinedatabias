@@ -31,7 +31,7 @@ from aif360.algorithms.preprocessing import Reweighing
 # In[ ]:
 
 
-def fareclass_analysis(coupon_path, ticket_path,race_id_path):
+def fareclass_analysis(coupon, ticket,race):
     def aif360_dataframe(df):
         def majority(x,y):
             #x=white,y=non-white
@@ -133,9 +133,9 @@ def fareclass_analysis(coupon_path, ticket_path,race_id_path):
     
     
     #downloading data
-    coupon1 = pd.read_csv(coupon_path)
-    tickets1 = pd.read_csv(ticket_path)
-    census = pd.read_csv(race_id_path) 
+    coupon1 = coupon
+    tickets1 = ticket
+    census = race
     
     #cleaning/preparing data 
     census = census[['Area Name', 'Metro Area', 'Code', 'White alone proportion', 'Non-White alone proportion']]
