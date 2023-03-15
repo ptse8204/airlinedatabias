@@ -4,6 +4,7 @@ import sys
 import pandas as pd
 import src.farepermile_biasmitigation
 import src.fareclass_analysis
+import src.preliminarypricesensitivitymodel
 
 if __name__ == "__main__":
     if len(sys.argv)>1:
@@ -21,6 +22,8 @@ if __name__ == "__main__":
             src.farepermile_biasmitigation.fpm_bias_mitigation(ticket,coupon,race,test)
             print("Fareclass Model")
             src.fareclass_analysis.fareclass_analysis(coupon, ticket,race)
+            print("Price Sensitivity Model")
+            src.preliminarypricesensitivitymodel.price_sensitivity_model(ticket,coupon,test)
         else:
             test=False
             print("Bias Analysis")
@@ -31,6 +34,8 @@ if __name__ == "__main__":
             src.farepermile_biasmitigation.fpm_bias_mitigation(ticket,coupon,race,test)
             print("Fareclass Model")
             src.fareclass_analysis.fareclass_analysis(coupon, ticket,race)
+            print("Price Sensitivity Model")
+            src.preliminarypricesensitivitymodel.price_sensitivity_model(ticket,coupon,test)
     else:
         test=False
         print("Bias Analysis")
@@ -41,3 +46,5 @@ if __name__ == "__main__":
         src.farepermile_biasmitigation.fpm_bias_mitigation(ticket,coupon,race,test)
         print("Fareclass Model")
         src.fareclass_analysis.fareclass_analysis(coupon, ticket,race)
+        print("Price Sensitivity Model")
+        src.preliminarypricesensitivitymodel.price_sensitivity_model(ticket,coupon,test)
